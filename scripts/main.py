@@ -4,7 +4,7 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 dirs = sys.argv[1:]
 result = []
-url = 'http://moral-helper.online:23456/upload'
+url = 'https://moral-helper.online:23456/upload'
 flag = False
 
 for i in dirs:

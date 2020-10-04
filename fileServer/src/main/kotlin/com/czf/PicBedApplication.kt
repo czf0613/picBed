@@ -11,7 +11,7 @@ class PicBedApplication
 
 const val itemPath = "/picBed/userFiles"
 const val iconPath = "/picBed/icons"
-const val domain = "http://moral-helper.online:23456"
+const val domain = "https://moral-helper.online:23456"
 const val defaultImage = "/picBed/icons/default.png"
 
 fun main(args: Array<String>) {
