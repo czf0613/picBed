@@ -9,10 +9,10 @@ flag = False
 
 for i in dirs:
     part = MultipartEncoder(fields={
-        'userId': '1',
-        'file': ('1.png', open(i, 'rb'), 'application/octet-stream')
+        'userId': '000000',
+        'file': ('xxx.png', open(i, 'rb'), 'application/octet-stream')
     })
-    head = {'token': 'c1c5719e761241c3ab3e1627286b9647',
+    head = {'token': 'empty token, add your token here',
             'content-type': part.content_type}
     response = requests.post(url, data=part, headers=head)
     if response.status_code != 200:
