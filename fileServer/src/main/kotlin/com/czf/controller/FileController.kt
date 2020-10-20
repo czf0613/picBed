@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse
  * @author czf
  */
 @RestController
+@CrossOrigin
 class FileController {
     @Autowired
     private lateinit var httpServletRequest: HttpServletRequest

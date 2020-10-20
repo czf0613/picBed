@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse
  * @since 1.0.0
  */
 @RestController
+@CrossOrigin
 class UserController {
     @Autowired
     private lateinit var fileService: FileService

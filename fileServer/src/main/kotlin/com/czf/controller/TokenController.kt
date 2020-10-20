@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest
  * @property 注入对象如下
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/token")
 class TokenController {
     @Autowired
