@@ -50,7 +50,7 @@ function checkToken() {
     return true
 
   let tempFly = require("flyio")
-  tempFly.post('https://pic-bed.xyz:2053/refreshLogin', null, {headers: {"token": localStorage.getItem('userToken')}}).then((response) => {
+  tempFly.post('https://pic-bed.xyz:2053/api/refreshLogin', null, {headers: {"token": localStorage.getItem('userToken')}}).then((response) => {
     let result = JSON.parse(response.data)
     localStorage.setItem('userToken', result["token"])
     localStorage.setItem('userId', result["userId"])
