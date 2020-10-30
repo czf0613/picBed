@@ -1,11 +1,18 @@
 <template>
   <div class="center" style="height: 600px">
-    <el-button type="primary" v-on:click="newToken">新增token</el-button>
+    <el-row>
+      <el-button type="primary" v-on:click="newToken">新增token</el-button>
+
+      <el-divider direction="vertical"/>
+
+      <el-button v-on:click="open">查看请求接口格式</el-button>
+    </el-row>
 
     <el-divider/>
 
     <el-table
-        v-loading="tokens[0].id === -1"
+        v-if="tokens.length !== 0 || loading"
+        v-loading="loading"
         element-loading-text="拼命加载中"
         element-loading-spinner="el-icon-loading"
         :show-overflow-tooltip="true"
@@ -56,14 +63,8 @@ export default {
   name: "Token",
   data() {
     return {
-      tokens: [{
-        id: -1,
-        owner: 1,
-        value: '',
-        label: '',
-        generateDate: 0,
-        recentUsage: 0
-      }]
+      tokens: [],
+      loading: true
     }
   },
   mounted() {
@@ -73,9 +74,13 @@ export default {
     fetch() {
       this.GLOBAL.fly.get(`${this.GLOBAL.domain}/token/${localStorage.getItem("userId")}/all`, null, {headers: {token: localStorage.getItem("userToken")}}).then((response) => {
         this.tokens = JSON.parse(response.data)
+        this.loading = false
       }).catch((error) => {
         console.log(error)
       })
+    },
+    open() {
+      window.open('https://github.com/czf0613/picBed')
     },
     toTimeString(timeStamp) {
       const time = new Date(timeStamp);
@@ -108,7 +113,7 @@ export default {
     deleteToken(id) {
       this.GLOBAL.fly.delete(`${this.GLOBAL.domain}/token/delete/${id}`, null, {headers: {token: localStorage.getItem("userToken")}}).then(() => {
         this.tokens = this.tokens.filter((item) => {
-          return item.id !== id
+          return item.id != id
         })
       }).catch((error) => {
         console.log(error)

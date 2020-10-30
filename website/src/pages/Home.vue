@@ -77,6 +77,7 @@ export default {
     this.GLOBAL.fly.get(`${this.GLOBAL.domain}/self/${localStorage.getItem("userId")}`, null, {headers: {token: localStorage.getItem("userToken")}}).then((response) => {
       let result = JSON.parse(response.data)
       localStorage.setItem("phone", result["phone"])
+      localStorage.setItem("serviceDate", result["expireDate"])
     }).catch((error) => {
       console.log(error)
     })

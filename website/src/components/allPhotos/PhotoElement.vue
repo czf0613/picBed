@@ -1,6 +1,8 @@
 <template>
   <div class="center">
-    <el-image lazy :src="url" style="max-width: 300px; max-height: 300px" alt="图片">
+    <el-image
+        fit="contain"
+        lazy :src="url" style="max-width: 300px; max-height: 300px" alt="图片">
       <img src="../../assets/loading.gif" slot="placeholder" alt="加载中">
       <img src="../../assets/error.png" slot="error" alt="加载失败">
     </el-image>
@@ -8,7 +10,7 @@
     <el-divider/>
 
     <el-row class="align">
-      <el-col :span="2"><p>{{fileName}}</p></el-col>
+      <el-col :span="10"><p>文件名：{{fileName}}</p></el-col>
 
       <el-divider direction="vertical"/>
       <a :href="url">
@@ -18,6 +20,10 @@
       <el-divider direction="vertical"/>
       <el-button type="danger" :loading="deleting" v-on:click="deletePic">删除图片</el-button>
     </el-row>
+
+    <br>
+
+    <p>图片URL：{{url}}</p>
   </div>
 </template>
 
