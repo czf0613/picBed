@@ -4,7 +4,7 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 dirs = sys.argv[1:]
 result = []
-url = 'https://pic-bed.xyz:2053/upload'
+url = 'https://pic-bed.xyz/api/upload'
 flag = False
 
 for i in dirs:
