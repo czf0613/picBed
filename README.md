@@ -1,6 +1,7 @@
 # picBed
 
 A cheap self-made pic bed, including user interfaces and a small script which can help software like Typora to upload images automatically.
+[网站戳这里](https://pic-bed.xyz)
 
 如果不出意外的话，这篇readme文档里面的图片服务，就是我自己提供的啦！
 
@@ -142,11 +143,11 @@ head = {'token': 'c1c5719e761241c3ab3e1627286b9647', 'content-type': part.conten
 
 点击左上角，选择偏好设置即可打开，打开后应该会看到如下页面
 
-![image-20201004204334176](https://pic-bed.xyz:2053/api/download/11)
+![image-20201004204334176](https://pic-bed.xyz/api/download/11)
 
 #### 2，左侧边栏点击图像
 
-![image-20201004204453865](https://pic-bed.xyz:2053/api/download/12)
+![image-20201004204453865](https://pic-bed.xyz/api/download/12)
 
 然后，将插入图片时这个部分的选项改成如图所示。接下来，更改上传服务设定，选择custom command选项，然后输入自定义的命令，格式如下：
 
@@ -158,7 +159,7 @@ python $python脚本的绝对地址，包含后缀名
 
 修改完成后，点击“验证图片上传选项”，如果您成功看到以下提示信息，那就说明大功告成了
 
-![image-20201004204853870](https://pic-bed.xyz:2053/api/download/15)
+![image-20201004204853870](https://pic-bed.xyz/api/download/15)
 
 #### 3，部分疑难解答
 
