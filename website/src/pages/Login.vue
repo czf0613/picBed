@@ -65,7 +65,7 @@ export default {
     login:function () {
       this.loading = true
       this.GLOBAL.fly.post(`${this.GLOBAL.domain}/login?userName=${this.userName}&password=${this.password}`).then((response) => {
-        let result = JSON.parse(response.data)
+        let result = response.data
         localStorage.setItem("userName", this.userName)
         localStorage.setItem('userToken', result["token"])
         localStorage.setItem('userId', result["userId"])

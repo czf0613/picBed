@@ -48,7 +48,7 @@ export default {
   methods: {
     fetch() {
       this.GLOBAL.fly.get(`${this.GLOBAL.domain}/files/${localStorage.getItem("userId")}/all`, null, {headers: {token: localStorage.getItem("userToken")}}).then((response) => {
-        this.items = JSON.parse(response.data)
+        this.items = response.data
         this.load.close()
       }).catch((error) => {
         console.log(error)

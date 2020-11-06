@@ -1,5 +1,5 @@
 const fly = require("flyio")
-const domain = "https://pic-bed.xyz:2053/api"
+const domain = "/api"
 
 export default {
   fly,

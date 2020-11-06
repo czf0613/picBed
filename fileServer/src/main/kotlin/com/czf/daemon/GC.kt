@@ -13,6 +13,11 @@ class GC {
     }
 
     @Scheduled(cron = "0 1 * * * *")
+    fun cleanMissingFiles() {
+
+    }
+
+    @Scheduled(cron = "0 1 * * * *")
     fun cleanInvalidUser() {
 
     }

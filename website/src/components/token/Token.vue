@@ -73,7 +73,7 @@ export default {
   methods: {
     fetch() {
       this.GLOBAL.fly.get(`${this.GLOBAL.domain}/token/${localStorage.getItem("userId")}/all`, null, {headers: {token: localStorage.getItem("userToken")}}).then((response) => {
-        this.tokens = JSON.parse(response.data)
+        this.tokens = response.data
         this.loading = false
       }).catch((error) => {
         console.log(error)
@@ -98,7 +98,7 @@ export default {
         cancelButtonText: '取消',
       }).then(({ value }) => {
         this.GLOBAL.fly.post(`${this.GLOBAL.domain}/token/${localStorage.getItem("userId")}/generate?label=${value}`, null, {headers: {token: localStorage.getItem("userToken")}}).then((response) => {
-          let result = JSON.parse(response.data)
+          let result = response.data
           this.tokens.push(result)
         }).catch((error) => {
           console.log(error)

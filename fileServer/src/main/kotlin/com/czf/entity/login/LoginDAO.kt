@@ -8,4 +8,5 @@ interface LoginDAO: JpaRepository<LoginState, Int> {
     fun countAllByOwner(owner:Int):Int
     fun existsByToken(token:String):Boolean
     fun findByToken(token:String):LoginState
+    fun deleteAllByToken(token:String)
 }

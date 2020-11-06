@@ -1,5 +1,6 @@
 package com.czf.service
 
+import com.czf.domain
 import com.czf.entity.fileRecord.FileRecord
 import com.czf.entity.fileRecord.FileRecordDAO
 import com.czf.entity.user.UserDAO
@@ -67,10 +68,9 @@ class FileService {
 
     suspend fun loadUserDir(userId: Int): List<String> {
         return withContext(Dispatchers.IO) {
-            val userName = userDAO.getUserNameWithId(userId)
-            val path = "$itemPath/$userName"
-            val file = File(path)
-            file.list()?.asList() ?: emptyList()
+            fileRecordDAO.findAllPathsWithUserId(userId).map {
+                "${domain}/download/${it.substringAfterLast("/").substringBeforeLast(".")}"
+            }
         }
     }
 

@@ -43,14 +43,20 @@ function checkToken() {
   if(localStorage.getItem('userToken') == null)
     return false
 
-  if(parseInt(localStorage.getItem('expireDate')) <= Date.now())
+  let local = new Date(localStorage.getItem('expireDate'))
+  let now = new Date()
+
+  let twoDaysLater = new Date()
+  twoDaysLater.setDate(now.getDate() + 2)
+
+  if(local < now)
     return false
 
-  if(parseInt(localStorage.getItem('expireDate')) >= Date.now() + 2*24*3600*1000)
+  if(local >= twoDaysLater)
     return true
 
   let tempFly = require("flyio")
-  tempFly.post('https://pic-bed.xyz:2053/api/refreshLogin', null, {headers: {"token": localStorage.getItem('userToken')}}).then((response) => {
+  tempFly.post('https://pic-bed.xyz/api/refreshLogin', null, {headers: {"token": localStorage.getItem('userToken')}}).then((response) => {
     let result = JSON.parse(response.data)
     localStorage.setItem('userToken', result["token"])
     localStorage.setItem('userId', result["userId"])

@@ -62,7 +62,7 @@ export default {
         phone: this.phone
       }
 
-      this.GLOBAL.fly.post(`${this.GLOBAL.domain}/modifySelfInformation?information=${JSON.stringify(obj)}`, null, {headers: {token: localStorage.getItem("userToken")}}).then(() => {
+      this.GLOBAL.fly.post(`${this.GLOBAL.domain}/modifySelfInformation`, obj, {headers: {token: localStorage.getItem("userToken")}}).then(() => {
         localStorage.setItem("phone", this.phone)
       }).catch((error) => {
         console.log(error)

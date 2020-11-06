@@ -109,7 +109,7 @@ class UserService {
             return false
 
         val user = userDAO.findByUserName(userName).apply {
-            this.password = newPassword
+            this.password = bCryptPasswordEncoder.encode(newPassword)
         }
 
         userDAO.save(user)

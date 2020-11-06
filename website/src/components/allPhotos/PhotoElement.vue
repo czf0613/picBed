@@ -42,8 +42,12 @@ export default {
   methods: {
     deletePic() {
       this.deleting = true
-      alert("删除功能暂未提供")
-      this.deleting = false
+      this.GLOBAL.fly.delete(`${this.GLOBAL.domain}/deleteFile/${this.fileName}`, null, {headers: {token: localStorage.getItem("userToken")}}).then(() => {
+        this.deleting = false
+      }).catch(() => {
+        alert("删除失败！")
+        this.deleting = false
+      })
     }
   }
 }
