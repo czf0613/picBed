@@ -123,7 +123,7 @@ pip install requests_toolbelt
 我们只需要修改这几个部分即可：
 
 ```python
-url = 'https://pic-bed.xyz:2053/upload'
+url = 'https://pic-bed.xyz/api/upload'
 
 part = MultipartEncoder(fields = {'userId': '1', 'file': ('xxx.png', open(i, 'rb'), 'application/octet-stream')})
 head = {'token': 'c1c5719e761241c3ab3e1627286b9647', 'content-type': part.content_type}
