@@ -59,10 +59,10 @@ export default {
     };
   },
   methods: {
-    forget: function () {
+    forget() {
       alert("请联系工作人员解锁")
     },
-    login:function () {
+    login() {
       this.loading = true
       this.GLOBAL.fly.post(`${this.GLOBAL.domain}/login?userName=${this.userName}&password=${this.password}`).then((response) => {
         let result = response.data
@@ -76,7 +76,7 @@ export default {
         this.loading = false
       })
     },
-    register:function () {
+    register() {
       if(this.registering) {
         this.sendingRegister = true
         this.GLOBAL.fly.post(`${this.GLOBAL.domain}/register?userName=${this.userName}&password=${this.password}&phone=${this.phone}`).then(() => {

@@ -1,7 +1,7 @@
 <template>
   <div class="center">
-    <el-avatar :src="getIconURL()" fit="fill" size="200" @error="() => { return false}">
-      <img src="../../assets/error.png" slot="default" alt="加载失败">
+    <el-avatar :src=getIconURL() fit="fill" size="200" @error="() => { return false}" style="width: 100px; height: 100px">
+      <img :src=getDefaultIconURL() slot="default" alt="加载失败">
     </el-avatar>
     <br/>
 
@@ -52,7 +52,10 @@ export default {
       return localStorage.getItem("userId")
     },
     getIconURL() {
-      return `${this.GLOBAL.domain}/icon/${localStorage.getItem("userId")}`
+      return `https://pic-bed.xyz/res/icons/${localStorage.getItem("userId")}.png`
+    },
+    getDefaultIconURL() {
+      return 'https://pic-bed.xyz/res/icons/default.png'
     },
     modifySelf() {
       let obj = {
