@@ -1,7 +1,7 @@
 # picBed
 
 A cheap self-made pic bed, including user interfaces and a small script which can help software like Typora to upload images automatically.
-[网站戳这里](https://pic-bed.xyz)。API接口的
+[网站戳这里](https://pic-bed.xyz)。API文档可以从上方的“API文档”的markdown文件中获取。
 
 如果不出意外的话，这篇readme文档里面的图片服务，就是我自己提供的啦！
 

@@ -1,5 +1,7 @@
 # API文档
 
+[TOC]
+
 注意，所有的api接口都有context path /api，也就是说，我想访问/login，实际你应该访问/api/login
 
 [TOC]
@@ -24,6 +26,5 @@ Method: POST
 例：
 
 ```
-/upload?userId=1&file=xxxxxxxxxxx 
+/upload?userId=1&file=xxxxxxxxxxx
 ```
-
