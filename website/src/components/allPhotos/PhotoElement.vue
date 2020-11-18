@@ -13,7 +13,8 @@
       <el-col :span="10"><p>文件名：{{fileName}}</p></el-col>
 
       <el-divider direction="vertical"/>
-      <a :href="url">
+
+      <a :href=grepURL() :download="fileName">
         <el-button type="primary">下载图片</el-button>
       </a>
 
@@ -42,12 +43,29 @@ export default {
   methods: {
     deletePic() {
       this.deleting = true
-      this.GLOBAL.fly.delete(`${this.GLOBAL.domain}/deleteFile/${this.fileName}`, null, {headers: {token: localStorage.getItem("userToken")}}).then(() => {
+      this.GLOBAL.fly.delete(`${this.GLOBAL.domain}/deleteFile/${this.grepFileId()}`, null, {headers: {token: localStorage.getItem("userToken")}}).then(() => {
         this.deleting = false
+        alert("删除成功！")
+        location.reload()
       }).catch(() => {
         alert("删除失败！")
         this.deleting = false
       })
+    },
+    grepURL() {
+      return this.url.substring(19)
+    },
+    grepFileId() {
+      let index = 0;
+
+      for (let i = 0; i < this.fileName.length; i++) {
+        if(this.fileName[i] === '.') {
+          index = i
+          break
+        }
+      }
+
+      return this.fileName.substring(0, index)
     }
   }
 }
