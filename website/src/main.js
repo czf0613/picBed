@@ -6,10 +6,13 @@ import globalVariables from './Globals.js';
 import VueRouter from "vue-router";
 import Home from "@/pages/Home";
 import App from "@/App";
+import lottie from 'vue-lottie';
+
 Vue.prototype.GLOBAL = globalVariables
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
+Vue.component('lottie', lottie)
 
 const router = new VueRouter({
   mode: 'history',
@@ -64,6 +67,7 @@ function checkToken() {
     return true
   }).catch((error) => {
     console.log(error)
+    localStorage.clear()
     return false
   })
 }

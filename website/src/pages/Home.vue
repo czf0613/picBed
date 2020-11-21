@@ -79,6 +79,7 @@ export default {
       localStorage.setItem("phone", result["phone"])
       localStorage.setItem("serviceDate", result["expireDate"])
     }).catch((error) => {
+      localStorage.clear()
       console.log(error)
     })
   }

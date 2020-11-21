@@ -8,7 +8,8 @@
         :action=this.getUploadURL()
         :headers="{token: fileToken}"
         multiple
-        :on-success="afterUpload">
+        :on-success="afterUpload"
+        :on-error="errorHandler">
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
       <div class="el-upload__tip" slot="tip">只能上传图片文件</div>
@@ -19,8 +20,8 @@
     <h1 v-if="items.length === 0">您还没有上传过图片</h1>
 
     <ul v-else>
-      <li v-for="item in items" :key="item">
-        <PhotoElement :url="item" :file-name=getFileNameFromURL(item)></PhotoElement>
+      <li v-for="item in items" :key="item" :loading="loading">
+        <PhotoElement :url="item" :file-name=getFileNameFromURL(item) :delete-call-back=fetch></PhotoElement>
       </li>
     </ul>
   </div>
@@ -28,7 +29,6 @@
 
 <script>
 import PhotoElement from "@/components/allPhotos/PhotoElement";
-import {Loading} from 'element-ui'
 
 export default {
   name: "PhotoGrid",
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       items: [],
-      load: Loading.service({fullscreen: true}),
+      loading: true,
       fileToken: localStorage.getItem("fileToken")
     }
   },
@@ -47,9 +47,11 @@ export default {
   },
   methods: {
     fetch() {
+      this.loading=true
+
       this.GLOBAL.fly.get(`${this.GLOBAL.domain}/files/${localStorage.getItem("userId")}/all`, null, {headers: {token: localStorage.getItem("userToken")}}).then((response) => {
         this.items = response.data
-        this.load.close()
+        this.loading=false
       }).catch((error) => {
         console.log(error)
       })
@@ -67,6 +69,9 @@ export default {
     },
     afterUpload() {
       this.fetch()
+    },
+    errorHandler() {
+      alert("上传失败")
     }
   },
   watch: {

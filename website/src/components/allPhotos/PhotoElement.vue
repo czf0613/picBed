@@ -33,7 +33,8 @@ export default {
   name: "PhotoElement",
   props: {
     url: String,
-    fileName: String
+    fileName: String,
+    deleteCallBack: Function
   },
   data() {
     return {
@@ -46,7 +47,7 @@ export default {
       this.GLOBAL.fly.delete(`${this.GLOBAL.domain}/deleteFile/${this.grepFileId()}`, null, {headers: {token: localStorage.getItem("userToken")}}).then(() => {
         this.deleting = false
         alert("删除成功！")
-        location.reload()
+        this.deleteCallBack()
       }).catch(() => {
         alert("删除失败！")
         this.deleting = false
