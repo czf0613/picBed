@@ -60,7 +60,7 @@ function checkToken() {
 
   let tempFly = require("flyio")
   tempFly.post('https://pic-bed.xyz/api/refreshLogin', null, {headers: {"token": localStorage.getItem('userToken')}}).then((response) => {
-    let result = JSON.parse(response.data)
+    let result = response.data
     localStorage.setItem('userToken', result["token"])
     localStorage.setItem('userId', result["userId"])
     localStorage.setItem('expireDate', result["expireDate"])

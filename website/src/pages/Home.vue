@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>pic-bed 管理后台</h1>
+    <el-button v-on:click="clean" type="warning">若网站无法加载内容，请点此尝试清除缓存</el-button>
 
     <el-divider/>
 
@@ -23,11 +24,11 @@
       <el-main>
         <PhotoGrid v-if="page === 1"/>
 
-        <Token v-if="page === 2"/>
+        <Token v-else-if="page === 2"/>
 
-        <SelfInfo v-if="page === 3"/>
+        <Pay v-else-if="page === 4"/>
 
-        <Pay v-if="page === 4"/>
+        <SelfInfo v-else-if="page === 3"/>
       </el-main>
     </el-container>
   </div>
@@ -40,7 +41,12 @@ import Token from "@/components/token/Token";
 import Pay from "@/components/pay/Pay";
 export default {
   name: "Home",
-  components: {Pay, Token, SelfInfo, PhotoGrid},
+  components: {
+    Pay,
+    Token,
+    SelfInfo,
+    PhotoGrid
+  },
   data() {
     return {
       page: 1
@@ -63,23 +69,31 @@ export default {
           this.page = 4
               break
         case "3-3":
-          this.GLOBAL.fly.post(`${this.GLOBAL.domain}/logOut`, null, {headers: {token: localStorage.getItem("userToken")}}).then(() => {
-            localStorage.clear()
-            this.$router.replace("login")
-          }).catch((error) => {
-            console.log(error)
-          })
+          this.logOut()
               break
       }
+    },
+    logOut() {
+      this.GLOBAL.fly.post(`${this.GLOBAL.domain}/logOut`, null, {headers: {token: localStorage.getItem("userToken")}}).then(() => {
+        localStorage.clear()
+        this.$router.replace("login")
+      }).catch((error) => {
+        localStorage.clear()
+        console.log(error)
+      })
+    },
+    clean() {
+      localStorage.clear()
+      this.$router.replace("login")
+      this.logOut()
     }
   },
-  created() {
+  mounted() {
     this.GLOBAL.fly.get(`${this.GLOBAL.domain}/self/${localStorage.getItem("userId")}`, null, {headers: {token: localStorage.getItem("userToken")}}).then((response) => {
       let result = response.data
       localStorage.setItem("phone", result["phone"])
       localStorage.setItem("serviceDate", result["expireDate"])
     }).catch((error) => {
-      localStorage.clear()
       console.log(error)
     })
   }

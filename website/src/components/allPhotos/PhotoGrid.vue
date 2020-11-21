@@ -8,6 +8,7 @@
         :action=this.getUploadURL()
         :headers="{token: fileToken}"
         multiple
+        accept=".jpg,.jpeg,.gif,.png,.ico,.bmp,.heif"
         :on-success="afterUpload"
         :on-error="errorHandler">
       <i class="el-icon-upload"></i>
